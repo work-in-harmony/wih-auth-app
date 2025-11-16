@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import useFetch from "../../hooks/UseFetch";
-import { CHECK_MAIL_URL } from "../../Urls";
+import { CHECK_MAIL_URL, GOOGLE_OAUTH_URL } from "../../Urls";
 import { useNavigate } from "react-router-dom";
 
 const CheckMailForm = () => {
@@ -55,7 +55,7 @@ const CheckMailForm = () => {
     // Add Google OAuth handler
   const handleGoogleLogin = () => {
     // Redirect to Spring Boot OAuth2 endpoint
-    window.location.assign("http://localhost:8010/oauth2/authorization/google");
+    window.location.assign(GOOGLE_OAUTH_URL);
 
   };
   return (

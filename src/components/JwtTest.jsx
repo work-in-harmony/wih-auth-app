@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import Logo from "./Logo";
 import LightModeButton from "./LightModeButton";
 import { ThemeContext } from "../Context/ThemeContext";
-import { useNavigate } from "react-router-dom";
+import { ALT_JWT_TEST_URL, LOGOUT_URL } from "../Urls";
+// import { useNavigate } from "react-router-dom";
 
 const JwtTest = () => {
   const [data, setData] = useState(null);
@@ -11,7 +12,7 @@ const JwtTest = () => {
   useEffect(() => {
     const testJwt = async () => {
       try {
-        const response = await fetch("http://localhost:8010/auth/jwt/test", {
+        const response = await fetch(ALT_JWT_TEST_URL, {
           method: "POST",
           credentials: "include", // Important: This sends cookies with the request
           headers: {
@@ -30,11 +31,11 @@ const JwtTest = () => {
     testJwt();
   }, []); // Empty dependency array means this runs once on component mount
 
-  const naigate = useNavigate();
+  // const naigate = useNavigate();
 
   const handleLogout = () => {
     const request = async () => {
-      const response = await fetch("http://localhost:8010/auth/logout", {
+      const response = await fetch(LOGOUT_URL, {
         method: "POST",
         credentials: "include", // Important: This sends cookies with the request
         headers: {
@@ -43,7 +44,7 @@ const JwtTest = () => {
       });
       const data = await response.text();
       console.log("Logout Response:", data);
-      naigate("/");
+      // naigate("/");
     };
     request();
   };

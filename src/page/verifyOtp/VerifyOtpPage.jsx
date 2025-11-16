@@ -22,7 +22,7 @@ const EmailVerification = ({ email = 'mohdelham107@gmail.com' }) => {
     if (data?.success) {
       console.log('Verification successful:', data);
       // Handle successful verification (e.g., redirect to dashboard)
-      navigate('/sign-up');
+      navigate('/signup');
       
     }
   }, [data,navigate]);
@@ -87,6 +87,8 @@ const EmailVerification = ({ email = 'mohdelham107@gmail.com' }) => {
         email,
       }),
     };
+
+
 
     request(VERIFY_OTP_URL, options);
   };

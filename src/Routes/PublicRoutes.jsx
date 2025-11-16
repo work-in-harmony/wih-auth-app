@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import Dashboard from "../page/DashboardPage";
 import JwtTest from "../components/JwtTest";
+import { JWT_TEST_URL } from "../Urls";
 
 const PublicRoutes = ({ children }) => {
   const [data, setData] = useState(null);
@@ -10,7 +11,7 @@ const PublicRoutes = ({ children }) => {
   useEffect(() => {
     const testJwt = async () => {
       try {
-        const response = await fetch("http://localhost:8010/auth/jwt/test", {
+        const response = await fetch(JWT_TEST_URL, {
           method: "POST",
           credentials: "include", // Important: This sends cookies with the request
           headers: {

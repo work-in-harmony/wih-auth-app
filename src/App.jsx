@@ -14,12 +14,12 @@ function App() {
   return (
     <>
       <ThemeProvider>
-        <Routes>
+        {/* <Routes>
           <Route path="/" element={
             <>
-              <PublicRoutes >
+              <PublicRoutes > */}
                 <CheckMailPage />
-              </PublicRoutes>
+              {/* </PublicRoutes>
             </>
             } />
           <Route path="/sign-up" element={
@@ -45,7 +45,7 @@ function App() {
         <Route path="/jwt/test" element={<JwtTest />} />
         <Route path="/oauth2/redirect" element={<OAuthRoutes />} />
         
-        </Routes>
+        </Routes> */}
       </ThemeProvider>
     </>
   );

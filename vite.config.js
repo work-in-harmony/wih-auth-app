@@ -1,38 +1,37 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import federation from '@originjs/vite-plugin-federation'
-
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
+import federation from "@originjs/vite-plugin-federation";
+import Exports from './src/exposedComponents'
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    tailwindcss()
-    , federation({
-      name: 'auth_app',
-      filename: 'AuthApp.js',
-      exposes: {
-        './CheckMailPage': './src/page/CheckMail/CheckMailPage.jsx',
-        './SignUpPage': './src/page/SignUp/SignUpPage.jsx',
-        './VerifyPage': './src/page/verifyOtp/VerifyOtpPage.jsx',
-        './Urls' : './src/Urls.jsx',
-        './GoogleKeys' :'./src/secrets/GoogleKeys.jsx',
-        './Logo': './src/components/Logo.jsx',
-        './ThemeContext' : './src/Context/ThemeContext.jsx',
-        './logo' : './src/assets/logo.png' 
+    tailwindcss(),
+    federation({
+      name: "auth_app",
+      filename: "AuthApp.js",
+      exposes: Exports,
+      remotes: {
+        HostApp: "http://localhost:5173/assets/HostApp.js",
       },
-      shared: ['react'],
+      shared: {
+        react: { singleton: true, eager: true },
+        "react-dom": { singleton: true, eager: true },
+        "react-router-dom": { singleton: true, eager: true },
+        "@reduxjs/toolkit": { singleton: true, eager: true },
+      },
     }),
     {
-      name: 'vite-plugin-notify-host-on-rebuild',
+      name: "vite-plugin-notify-host-on-rebuild",
       apply(config, { command }) {
-        return Boolean(command === 'build' && config.build?.watch);
+        return Boolean(command === "build" && config.build?.watch);
       },
       async buildEnd(error) {
         if (!error) {
           try {
-            await fetch('http://localhost:5173/__fullReload'); // http://localhost:5000
+            await fetch("http://localhost:5173/__fullReload"); // http://localhost:5000
           } catch (e) {
             console.log(e);
           }
@@ -42,8 +41,8 @@ export default defineConfig({
   ],
   build: {
     modulePreload: false,
-    target: 'esnext',
+    target: "esnext",
     minify: false,
     cssCodeSplit: false,
   },
-})
+});

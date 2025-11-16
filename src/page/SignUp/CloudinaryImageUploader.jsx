@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { CLOUDINARY_WIDGET_URL } from '../../Urls';
 import { Camera, Upload, X } from 'lucide-react';
 
 export default function CloudinaryImageUploader({ onImageUpload, currentImageUrl }) {
@@ -121,7 +122,7 @@ export default function CloudinaryImageUploader({ onImageUpload, currentImageUrl
       </p>
 
       {/* Load Cloudinary Widget Script */}
-      <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+      <script src={CLOUDINARY_WIDGET_URL} type="text/javascript"></script>
     </div>
   );
 }

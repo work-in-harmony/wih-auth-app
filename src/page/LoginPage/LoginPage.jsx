@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import useFetch from '../../hooks/UseFetch'; // Adjust the import path as needed
 import Logo from '../../components/Logo';
 import { useNavigate } from 'react-router-dom';
+import { LOGIN_URL } from '../../Urls';
  
 
 const LoginPage = () => {
@@ -11,6 +12,8 @@ const LoginPage = () => {
   });
   const [formErrors, setFormErrors] = useState({});
   const { data, error, loading, request } = useFetch();
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -56,7 +59,7 @@ const LoginPage = () => {
       password: formData.password
     };
 
-    await request('http://localhost:8010/auth/login', {
+    await request(LOGIN_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -74,9 +77,18 @@ const LoginPage = () => {
       console.log('Login successful:', data);
       // Store token in memory or handle navigation
       // For example: navigate to dashboard or store token
-      alert(`Welcome! Logged in as ${data.email}`);
 
-      navigate('/');
+      // registered : null
+      // role : "ROLE_USER"
+      // subscribed : null
+
+      alert(`Welcome! Logged in as ${data.email}`);
+      if (data.registered === false || data.registered === null) {
+        navigate('/plans');
+      } else {
+        navigate('/');
+      }
+
       // You can also store the token:
       // const token = data.token;
       // Navigate to dashboard or home page here

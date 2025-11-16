@@ -63,6 +63,12 @@ const SignUpForm = (props) => {
           {props.errors.password && (
             <p className="mt-1 text-sm text-red-500">{props.errors.password}</p>
           )}
+          {/* Optional: Helper text */}
+          {!props.errors.password && (
+            <p className="mt-1 text-xs text-[var(--color-wih-600)]">
+              Must be at least 8 characters with at least one number
+            </p>
+          )}
         </div>
 
         {props.errors.submit && (

@@ -3,7 +3,7 @@ import Logo from "../../components/Logo";
 import SignUpForm from "./SignUpForm";
 import CloudinaryImageUploader from "./CloudinaryImageUploader";
 import { use } from "react";
-import { SIGN_UP_URL } from "../../Urls"
+import { SIGN_UP_URL, CLOUDINARY_WIDGET_URL } from "../../Urls"
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
@@ -21,6 +21,7 @@ export default function SignUpPage() {
   const navigate = useNavigate();
 
 
+
   // Load Cloudinary widget script
   useEffect(() => {
 
@@ -32,7 +33,7 @@ export default function SignUpPage() {
 
 
     const script = document.createElement('script');
-    script.src = 'https://upload-widget.cloudinary.com/global/all.js';
+    script.src = CLOUDINARY_WIDGET_URL;
     script.async = true;
     document.body.appendChild(script);
 
@@ -64,8 +65,19 @@ export default function SignUpPage() {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.username.trim()) newErrors.username = "Full name is required";
-    if (!formData.password) newErrors.password = "Password is required";
+    
+    if (!formData.username.trim()) {
+      newErrors.username = "Full name is required";
+    }
+    
+    if (!formData.password) {
+      newErrors.password = "Password is required";
+    } else if (formData.password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters long";
+    } else if (!/\d/.test(formData.password)) {
+      newErrors.password = "Password must contain at least one number";
+    }
+    
     return newErrors;
   };
 
@@ -95,7 +107,7 @@ export default function SignUpPage() {
 
       console.log("Sign up successful:", data);
 
-      localStorage.removeItem("email");
+      // localStorage.removeItem("email");
       navigate("/login");
 
       // Redirect or show success message
@@ -149,4 +161,3 @@ export default function SignUpPage() {
     </div>
   );
 }
-

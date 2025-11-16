@@ -1,4 +1,5 @@
 import React from 'react'
+import { JWT_TEST_URL } from '../Urls'
 import { useEffect, useState } from 'react'
 
 const DashboardPage = () => {
@@ -8,7 +9,7 @@ const DashboardPage = () => {
   useEffect(() => {
     const testJwt = async () => {
       try {
-        const response = await fetch("http://localhost:8010/auth/jwt/test", {
+        const response = await fetch(JWT_TEST_URL, {
           method: "POST",
           credentials: "include", // Important: This sends cookies with the request
           headers: {

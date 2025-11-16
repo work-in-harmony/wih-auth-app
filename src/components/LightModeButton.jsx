@@ -1,10 +1,17 @@
+import { Sun, Moon } from "lucide-react";
+
 function LightModeButton({ toggleTheme, theme }) {
-  return <button
-    className="absolute top-4 right-24 px-3 py-2 rounded bg-wih-700 text-wih-50 text-sm"
-    onClick={toggleTheme}
-  >
-    Toggle {theme === "light" ? "Dark" : "Light"} Mode
-  </button>;
+  const Icon = theme === "light" ? Moon : Sun;
+
+  return (
+    <button
+      onClick={toggleTheme}
+      className="p-2 rounded-full bg-wih-700 text-wih-50 hover:bg-wih-600 transition"
+      aria-label="Toggle theme"
+    >
+      <Icon size={18} />
+    </button>
+  );
 }
 
 export default LightModeButton;

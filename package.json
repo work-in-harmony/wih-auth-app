@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "concurrently \"vite build --watch\" \"vite preview --port 5001 --strictPort\"",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview --port 5001 --strictPort"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",

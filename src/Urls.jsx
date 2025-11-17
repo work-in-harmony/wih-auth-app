@@ -1,4 +1,4 @@
-const BASE_URL = "http://20.239.224.236:8080";
+const BASE_URL = "https://api.zonion.fun";
 const ALT_BASE_URL = import.meta.env.VITE_API_ALT_BASE_URL || BASE_URL;
 
 export const URL = BASE_URL;

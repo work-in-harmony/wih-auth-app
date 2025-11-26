@@ -4,7 +4,7 @@ import Logo from '../../components/Logo';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_URL } from '../../Urls';
  
-
+ 
 const LoginPage = () => {
   const [formData, setFormData] = useState({
     email: '',

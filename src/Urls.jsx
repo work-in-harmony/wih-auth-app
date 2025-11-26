@@ -11,7 +11,7 @@ export const SIGN_UP_URL = `${BASE_URL}/auth/auth/signup`;
 export const LOGOUT_URL = `${BASE_URL}/auth/auth/logout`;
 export const JWT_TEST_URL = `${BASE_URL}/auth/auth/jwt/test`;
 export const ALT_JWT_TEST_URL = `${ALT_BASE_URL}/auth/auth/jwt/test`;
-export const GOOGLE_OAUTH_URL = `${BASE_URL}/oauth2/authorization/google`;
+export const GOOGLE_OAUTH_URL = `${BASE_URL}/auth/oauth2/authorization/google`;
 
 // Assets / external resources
 export const IMAGE_URL_DARK = import.meta.env.VITE_IMAGE_URL_DARK || "https://i.ibb.co/s9rf1nCJ/logo.png";

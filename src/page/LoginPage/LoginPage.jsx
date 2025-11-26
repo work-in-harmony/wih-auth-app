@@ -86,6 +86,7 @@ const LoginPage = () => {
       if (data.registered === false || data.registered === null) {
         navigate('/plans');
       } else {
+        window.location.href = "/";
         navigate('/');
       }
 
